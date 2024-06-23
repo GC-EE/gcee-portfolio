@@ -37,9 +37,9 @@ const MobileNav = () => {
       <SheetTrigger className="flex items-center justify-center">
         <CiMenuFries className="text-[32px] text-accent" />
       </SheetTrigger>
-      <SheetContent className="flex flex-col">
-        {/* logo */}
-        <div className="mb-40 mt-32 text-center text-2xl">
+      <SheetContent className="flex w-screen flex-col">
+        {/* 로고나 로그인 버튼 들어갈예정 */}
+        {/* <div className="mb-40 mt-32 text-center text-2xl">
           <SheetClose asChild>
             <Link href={'/'}>
               <h1 className="text-4xl font-semibold">
@@ -47,14 +47,14 @@ const MobileNav = () => {
               </h1>
             </Link>
           </SheetClose>
-        </div>
+        </div> */}
         {/* nav */}
-        <nav className="flex flex-col items-center gap-8">
+        <nav className="mt-20 flex flex-col items-center gap-14">
           {links?.map((link, index) => {
             return (
               <SheetClose asChild key={index}>
                 <Link
-                  className={`${link.path === pathName && 'border-b-2 border-accent text-accent'} text-xl capitalize transition-all hover:text-accent`}
+                  className={`${link.path === pathName && 'border-b-2 border-accent text-accent'} text-3xl capitalize transition-all hover:text-accent`}
                   href={link.path}
                 >
                   {link.name}
