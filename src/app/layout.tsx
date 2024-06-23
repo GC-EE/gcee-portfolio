@@ -4,8 +4,7 @@ import './globals.css';
 
 // components
 import Header from '@/components/layout/Header';
-import PageTransition from '@/components/animation/PageTransition';
-import StairTransition from '@/components/animation/StairTransition';
+import Footer from '@/components/layout/Footer';
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
@@ -26,9 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={jetbrainsMono.variable}>
-        <Header />
-        <StairTransition />
-        <PageTransition>{children}</PageTransition>
+        <main className="flex h-screen flex-col">
+          <Header />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </main>
       </body>
     </html>
   );

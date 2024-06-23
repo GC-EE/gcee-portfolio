@@ -30,6 +30,7 @@ const config = {
           DEFAULT: '#00ff99',
           hover: '#00e187',
         },
+        borderGray: '#4B4B4B',
       },
 
       keyframes: {

@@ -10,9 +10,19 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { CiMenuFries } from 'react-icons/ci';
 import { links } from '@/lib/config';
+import { useEffect, useRef } from 'react';
 
 const MobileNav = () => {
   const pathName = usePathname();
+  const ref = useRef(null);
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1200) {
+      }
+    });
+  });
+
   return (
     <Sheet>
       <SheetTrigger className="flex items-center justify-center">
@@ -38,7 +48,6 @@ const MobileNav = () => {
                   className={`${link.path === pathName && 'border-b-2 border-accent text-accent'} text-xl capitalize transition-all hover:text-accent`}
                   href={link.path}
                 >
-                  {' '}
                   {link.name}
                 </Link>
               </SheetClose>

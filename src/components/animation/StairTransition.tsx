@@ -14,7 +14,7 @@ const StairTransition = () => {
             <Stairs />
           </div>
 
-          <motion.div
+          {/* <motion.div
             className="pointer-events-none fixed top-0 h-screen w-screen bg-primary"
             initial={{
               opacity: 1,
@@ -27,7 +27,7 @@ const StairTransition = () => {
                 ease: 'easeInOut',
               },
             }}
-          />
+          /> */}
         </div>
       </AnimatePresence>
     </>

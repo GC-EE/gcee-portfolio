@@ -39,7 +39,7 @@ const Stats = () => {
   }, []);
 
   return (
-    <section className="mt-3">
+    <section>
       <div
         className="container mx-auto grid grid-cols-2 gap-6 sm:grid-cols-4"
         ref={ref}
