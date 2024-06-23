@@ -10,21 +10,30 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { CiMenuFries } from 'react-icons/ci';
 import { links } from '@/lib/config';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const MobileNav = () => {
   const pathName = usePathname();
-  const ref = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
+    const handleResize = () => {
       if (window.innerWidth > 1200) {
+        setIsOpen(false);
       }
-    });
-  });
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // 초기 로드 시에도 체크
+    handleResize();
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger className="flex items-center justify-center">
         <CiMenuFries className="text-[32px] text-accent" />
       </SheetTrigger>
