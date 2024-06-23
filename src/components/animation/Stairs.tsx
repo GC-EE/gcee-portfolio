@@ -39,7 +39,7 @@ function Stairs() {
               ease: 'easeInOut',
               delay: reverseIndex(index) * 0.1,
             }}
-            className="relative h-full w-full bg-white"
+            className="relative h-full w-full flex-1 border-8 border-white bg-white"
           />
         );
       })}
