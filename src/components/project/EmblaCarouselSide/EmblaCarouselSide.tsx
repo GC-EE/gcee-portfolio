@@ -9,8 +9,8 @@ import {
   NextButton,
   PrevButton,
   usePrevNextButtons,
-} from './EmbalCarouselArrowButtonsDesktop';
-import { DotButton, useDotButton } from './EmblaCarouselDotButtonDesktop';
+} from './EmbalCarouselArrowButtonsSlide';
+import { DotButton, useDotButton } from './EmblaCarouselDotButtonSlide';
 
 const TWEEN_FACTOR_BASE = 0.52;
 
@@ -22,7 +22,7 @@ type PropType = {
   options?: EmblaOptionsType;
 };
 const SLIDE_COUNT = 5;
-const EmblaCarouselDeskTop: React.FC<PropType> = (props) => {
+const EmblaCarouselSide: React.FC<PropType> = (props) => {
   const {
     slides = Array.from(Array(SLIDE_COUNT).keys()),
     options = { loop: true },
@@ -153,4 +153,4 @@ const EmblaCarouselDeskTop: React.FC<PropType> = (props) => {
   );
 };
 
-export default EmblaCarouselDeskTop;
+export default EmblaCarouselSide;

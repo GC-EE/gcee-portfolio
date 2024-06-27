@@ -1,11 +1,11 @@
 import React from 'react';
 import { EmblaOptionsType } from 'embla-carousel';
-import { DotButton, useDotButton } from './EmblaCarouselDotButton';
+import { DotButton, useDotButton } from './EmblaCarouselDotButtonVertical';
 import {
   PrevButton,
   NextButton,
   usePrevNextButtons,
-} from './EmblaCarouselArrowButtons';
+} from './EmblaCarouselArrowButtonsVertical';
 import useEmblaCarousel from 'embla-carousel-react';
 
 type PropType = {
@@ -14,7 +14,7 @@ type PropType = {
 };
 const SLIDE_COUNT = 5;
 
-const EmblaCarousel = (props: PropType) => {
+const EmblaCarouselVertical = (props: PropType) => {
   const {
     slides = Array.from(Array(SLIDE_COUNT).keys()),
     options = { axis: 'y' },
@@ -69,4 +69,4 @@ const EmblaCarousel = (props: PropType) => {
   );
 };
 
-export default EmblaCarousel;
+export default EmblaCarouselVertical;

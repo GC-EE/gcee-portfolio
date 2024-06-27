@@ -1,7 +1,7 @@
 'use client';
 
-import EmblaCarousel from '@/components/project/EmblaCarousel';
-import EmblaCarouselDeskTop from '@/components/project/EmblaCarouselDeskTop';
+import EmblaCarouselSide from '@/components/project/EmblaCarouselSide/EmblaCarouselSide';
+import EmblaCarouselVertical from '@/components/project/EmblaCarouselVertical/EmblaCarouselVertical';
 
 const Project = () => {
   return (
@@ -29,17 +29,17 @@ const Project = () => {
             </svg>
           </div> */}
 
-        <EmblaCarouselDeskTop />
+        <EmblaCarouselVertical />
 
         <h3 className="h3 mb-6 mt-16 w-full text-center sm:text-start">
           Side Project
         </h3>
         <div className="hidden xl:block">
-          <EmblaCarousel />
+          <EmblaCarouselSide />
         </div>
 
         <div className="xl:hidden">
-          <EmblaCarouselDeskTop />
+          <EmblaCarouselVertical />
         </div>
       </div>
     </section>
