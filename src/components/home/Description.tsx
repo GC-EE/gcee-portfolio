@@ -14,7 +14,7 @@ const Description = () => {
     <>
       <span className="text-xl">FrontEnd Developer</span>
       <h1 className="h1 mb-6">
-        Hello I'm <br /> <span className="text-accent">Jake</span>
+        {`Hello I'm`} <br /> <span className="text-accent">Jake</span>
       </h1>
       <p className="mb-9 max-w-[500px] whitespace-pre-line text-white/80">
         프론트엔드 생태계의 최신 트렌드를
