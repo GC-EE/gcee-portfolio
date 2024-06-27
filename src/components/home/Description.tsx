@@ -12,7 +12,7 @@ import { TypeAnimation } from 'react-type-animation';
 // );
 
 const Description = () => {
-  console.log('배포 테스트');
+  console.log('배포 테스트!');
   return (
     <>
       <span className="text-xl">FrontEnd Developer</span>
