@@ -12,10 +12,10 @@ const Teamplate = ({ children }: { children: ReactNode }) => {
   return (
     <>
       {path === '/' ? (
-        <>
+        <div className="overflow-hidden">
           <StairTransition />
           <PageTransition>{children}</PageTransition>
-        </>
+        </div>
       ) : (
         <AnimatePresence mode="wait">
           <motion.div

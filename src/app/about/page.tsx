@@ -27,6 +27,7 @@ const CircleAnimation: React.FC = () => {
     '/redux.webp',
     '/node.webp',
     '/aws.webp',
+    '/reactquery.webp',
   ];
 
   useEffect(() => {
