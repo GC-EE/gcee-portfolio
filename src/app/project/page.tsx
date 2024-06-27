@@ -29,17 +29,17 @@ const Project = () => {
             </svg>
           </div> */}
 
-        <EmblaCarouselVertical />
+        <EmblaCarouselSide />
 
         <h3 className="h3 mb-6 mt-16 w-full text-center sm:text-start">
           Side Project
         </h3>
         <div className="hidden xl:block">
-          <EmblaCarouselSide />
+          <EmblaCarouselVertical />
         </div>
 
         <div className="xl:hidden">
-          <EmblaCarouselVertical />
+          <EmblaCarouselSide />
         </div>
       </div>
     </section>
