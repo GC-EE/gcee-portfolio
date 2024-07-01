@@ -1,7 +1,6 @@
-// src/AnimatedCards.tsx
 'use client';
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 interface CardData {
   id: number;
@@ -9,7 +8,7 @@ interface CardData {
   title: string;
 }
 
-const cardsData: CardData[] = [
+const initialCardsData: CardData[] = [
   { id: 1, name: 'Generic Guy 1', title: 'oil lamp' },
   { id: 2, name: 'Generic Guy 2', title: 'pants' },
   { id: 3, name: 'Generic Guy 3', title: 'plant 003' },
@@ -40,32 +39,38 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
   totalCards,
   isFirst,
 }) => {
-  const zIndex = isOpen ? totalCards : index;
-  const backgroundColor = isOpen ? 'bg-opacity-100' : 'bg-opacity-90';
+  const zIndex = isOpen ? totalCards * 10 : index;
+  const cardHeight = 80; // 카드 높이
+  const overlapHeight = cardHeight / 4; // 1/3만큼 겹치도록 설정 (간격 증가)
 
   return (
     <motion.div
-      className={`absolute mb-2 flex h-80 w-[50%] cursor-pointer select-none flex-col items-center justify-center rounded-3xl font-semibold shadow-inner shadow-gray-300 ${backgroundColor}`}
+      layout
+      className={`absolute mb-2 flex h-80 w-[50%] cursor-pointer select-none flex-col items-center justify-center rounded-3xl border border-gray-400 bg-[#1d1b1b] font-semibold`}
       initial={{ y: 0 }}
-      animate={{ y: isOpen ? -140 : 0, zIndex: isOpen ? totalCards : index }} // 높이와 zIndex 조정
-      transition={{ type: 'spring', stiffness: 100, damping: 10 }} // 애니메이션 조정
-      onClick={() => toggleOpen(isOpen ? -1 : card.id)}
-      style={{ top: `${index * 10}px`, zIndex }}
+      animate={{
+        y: isOpen ? -140 : 0,
+        zIndex: zIndex,
+      }}
+      transition={{ type: 'spring', stiffness: 100, damping: 10 }}
+      onClick={() => toggleOpen(card.id)}
+      style={{ top: `${index * overlapHeight}px` }}
     >
       {isOpen ? (
-        <div className="relative w-full px-4 py-2 text-center text-lg font-bold text-blue-300">
+        <div className="relative w-full px-4 py-2 text-center text-lg font-bold text-white">
           {card.name}
         </div>
       ) : (
         isFirst && (
-          <div className="relative w-full px-4 py-2 text-center text-lg font-bold text-blue-300">
+          <div className="relative w-full px-4 py-2 text-center text-lg font-bold text-white">
             Click Me!
           </div>
         )
       )}
       <div
-        className={`absolute right-0 translate-x-full transform px-2 py-1 text-sm font-medium text-gray-700 ${titleColors[index % titleColors.length]}`}
-        style={{ top: `${index * 10}px`, zIndex }}
+        className={`absolute right-0 top-2 translate-x-full transform px-2 py-1 text-sm font-medium text-gray-700 ${
+          titleColors[(card.id - 1) % titleColors.length]
+        }`}
       >
         {card.title}
       </div>
@@ -74,18 +79,34 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
 };
 
 const AnimatedCards: React.FC = () => {
+  const [cardsData, setCardsData] = useState(initialCardsData);
   const [openCardId, setOpenCardId] = useState<number>(-1);
 
+  const moveCardToBack = (cardId: number) => {
+    setCardsData((prev) => {
+      const cardToMove = prev.find((card) => card.id === cardId);
+      if (!cardToMove) return prev;
+      const newCards = prev.filter((card) => card.id !== cardId);
+      return [cardToMove, ...newCards];
+    });
+  };
+
   const toggleOpen = (id: number) => {
-    setOpenCardId(id === openCardId ? -1 : id);
+    if (id === openCardId) {
+      setOpenCardId(-1);
+      moveCardToBack(id);
+    } else {
+      if (openCardId !== -1) {
+        moveCardToBack(openCardId);
+      }
+      setOpenCardId(id);
+    }
   };
 
   return (
-    <div className="xs:mt-32 container relative mx-auto flex h-full w-full items-center justify-center">
-      {cardsData
-        .slice()
-        .reverse()
-        .map((card, index) => (
+    <div className="xs:mt-20 container relative mx-auto flex h-full w-full items-center justify-center">
+      <AnimatePresence mode="wait">
+        {cardsData.map((card, index, array) => (
           <AnimatedCard
             key={card.id}
             card={card}
@@ -93,15 +114,12 @@ const AnimatedCards: React.FC = () => {
             toggleOpen={toggleOpen}
             index={index}
             totalCards={cardsData.length}
-            isFirst={openCardId === -1 && index === 0}
+            isFirst={openCardId === -1 && index === array.length - 1} // 수정된 부분
           />
         ))}
+      </AnimatePresence>
     </div>
   );
 };
 
-const ContactPage: React.FC = () => {
-  return <AnimatedCards />;
-};
-
-export default ContactPage;
+export default AnimatedCards;
